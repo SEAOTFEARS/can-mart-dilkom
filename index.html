@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Özel Can Mart Rehabilitasyon Merkezi</title>
+    
+    <!-- FontAwesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================
+           TEMA RENKLERİ VE TEMEL STİLLER
+           ========================================== */
+        :root {
+            --bg-dark: #070d19;
+            --bg-card: rgba(15, 23, 42, 0.75);
+            --primary-cyan: #06b6d4;
+            --primary-blue: #3b82f6;
+            --accent-glow: rgba(6, 182, 212, 0.4);
+            --gradient-main: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #6366f1 100%);
+            --gradient-card: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
+            --border-glow: rgba(6, 182, 212, 0.5);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .text-center { text-align: center; }
+
+        /* NEON METİN EFEKTİ */
+        .highlight-glow {
+            background-color: #06b6d4;
+            background-image: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #8b5cf6 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: #06b6d4;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            filter: drop-shadow(0 0 12px rgba(6, 182, 212, 0.5));
+            padding-right: 2px;
+        }
+
+        .highlight-text {
+            color: var(--primary-cyan);
+            font-weight: 700;
+        }
+
+        .sub-badge {
+            color: var(--primary-cyan);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .main-title {
+            font-size: 2.5rem;
+            margin-top: 0.5rem;
+            margin-bottom: 2.5rem;
+            font-weight: 800;
+        }
+
+        /* ==========================================
+           AKICI VE AĞIR ÇEKİM GİRİŞ ANİMASYONLARI
+           ========================================== */
+        .anim-hidden {
+            opacity: 0;
+            will-change: transform, opacity;
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .anim-hidden.from-top    { transform: translateY(-60px); }
+        .anim-hidden.from-bottom { transform: translateY(60px); }
+        .anim-hidden.from-left   { transform: translateX(-80px); }
+        .anim-hidden.from-right  { transform: translateX(80px); }
+
+        .anim-hidden.anim-show {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+
+        /* ==========================================
+           FARE TAKİP EFEKTİ (CURSOR GLOW)
+           ========================================== */
+        .cursor-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.25) 0%, rgba(59, 130, 246, 0.08) 50%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            transition: transform 0.08s ease-out;
+            mix-blend-mode: screen;
+        }
+
+        /* ==========================================
+           YEPYENİ KİNEMATİK TİPOGRAFİK İNTRO
+           ========================================== */
+        .intro-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #030712;
+            z-index: 999999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s cubic-bezier(0.77, 0, 0.175, 1), visibility 0.8s ease;
+            overflow: hidden;
+        }
+
+        .intro-overlay.fade-out {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        /* Arka plan sinematik ışık sızıntıları */
+        .intro-overlay::before,
+        .intro-overlay::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: 1;
+            opacity: 0.15;
+            animation: ambientShift 6s ease-in-out infinite alternate;
+        }
+
+        .intro-overlay::before {
+            background: #06b6d4;
+            top: -100px;
+            left: -100px;
+        }
+
+        .intro-overlay::after {
+            background: #6366f1;
+            bottom: -100px;
+            right: -100px;
+            animation-delay: -3s;
+        }
+
+        @keyframes ambientShift {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.3) translate(40px, 40px); }
+        }
+
+        .cinematic-intro-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        /* OSMANDENİZ TASARIMI YAZISI - FELAKET NEON GRADIENT */
+        .intro-tagline {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 35%, #00c6ff 70%, #90e0ef 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 25px rgba(0, 242, 254, 0.8)) drop-shadow(0 0 50px rgba(79, 172, 254, 0.6));
+            opacity: 0;
+            transform: translateY(20px);
+            animation: cinematicReveal 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+        }
+
+        .intro-main-heading {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            color: #ffffff;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: cinematicReveal 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+            letter-spacing: -1px;
+        }
+
+        .intro-sub-text {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 1px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: cinematicReveal 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+        }
+
+        @keyframes cinematicReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ==========================================
+           GENİŞLETİLMİŞ NEON NAVBAR
+           ========================================== */
+        .header-floating {
+            position: fixed;
+            top: 1.2rem;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            padding: 0 1.5rem;
+        }
+
+        .navbar-capsule {
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(20px);
+            border: 1.5px solid rgba(6, 182, 212, 0.7);
+            border-radius: 50px;
+            padding: 0.7rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1350px;
+            box-shadow: 0 0 25px rgba(6, 182, 212, 0.4), 0 0 45px rgba(59, 130, 246, 0.25), inset 0 0 15px rgba(6, 182, 212, 0.2);
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.2rem;
+            white-space: nowrap;
+        }
+
+        .logo-orb {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--gradient-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.15rem;
+            box-shadow: 0 0 15px var(--primary-cyan);
+            flex-shrink: 0;
+        }
+
+        .nav-links-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .nav-item {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 0.6rem 1rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            white-space: nowrap;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            color: #fff;
+            background: rgba(6, 182, 212, 0.15);
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.25);
+        }
+
+        .nav-item-btn {
+            background-color: #06b6d4;
+            background-image: var(--gradient-main);
+            color: #fff !important;
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 30px;
+            padding: 0.6rem 1.4rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .nav-item-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(6, 182, 212, 0.8);
+        }
+
+        .nav-right-block {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .nav-social-icons {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            color: #ffffff !important;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon.fb { background: linear-gradient(135deg, #1877f2 0%, #0052d4 100%); box-shadow: 0 0 10px rgba(24, 119, 242, 0.7); }
+        .social-icon.ig { background: linear-gradient(45deg, #f09433 0%, #dc2743 50%, #bc1888 100%); box-shadow: 0 0 10px rgba(220, 39, 67, 0.7); }
+        .social-icon.wp { background: linear-gradient(135deg, #25d366 0%, #075e54 100%); box-shadow: 0 0 10px rgba(37, 211, 102, 0.7); }
+        .social-icon:hover { transform: translateY(-3px) scale(1.15); }
+
+        .mobile-toggle, .mobile-close {
+            display: none;
+            color: #fff;
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+
+        /* ==========================================
+           HERO & SERVİS KARTLARI
+           ========================================== */
+        .hero-section {
+            padding: 9.5rem 0 5rem 0;
+            position: relative;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .status-badge {
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid var(--primary-cyan);
+            color: var(--primary-cyan);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.2);
+        }
+
+        .hero-main-title {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 0.8rem;
+        }
+
+        .hero-description {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin: 1rem 0 2rem 0;
+        }
+
+        .hero-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 1.2rem;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-cyan);
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
+        }
+
+        .stat-icon { font-size: 1.8rem; color: var(--primary-cyan); }
+        .stat-number { display: block; font-size: 1.3rem; font-weight: 800; }
+        .stat-label { font-size: 0.75rem; color: var(--text-muted); }
+
+        .hero-img {
+            width: 100%;
+            border-radius: 24px;
+            border: 1px solid var(--border-glow);
+            box-shadow: 0 0 30px rgba(6, 182, 212, 0.2);
+            transition: transform 0.5s ease;
+        }
+
+        .hero-img:hover { transform: scale(1.02); }
+
+        /* ==========================================
+           VİZYONUMUZ & MİSYONUMUZ BÖLÜMÜ
+           ========================================== */
+        .vision-mission-section { padding: 4rem 0; }
+        .vision-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+
+        .vision-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .vision-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: var(--gradient-main);
+        }
+
+        .vision-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary-cyan);
+            box-shadow: 0 0 30px rgba(6, 182, 212, 0.25);
+        }
+
+        .vision-icon { font-size: 2.8rem; color: var(--primary-cyan); margin-bottom: 1.2rem; }
+        .vision-card h3 { font-size: 1.5rem; margin-bottom: 1rem; font-weight: 700; }
+        .vision-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+
+      
+        .services-section { padding: 3rem 0; }
+        .cards-3d-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+
+        .card-3d {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .card-3d:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary-cyan);
+            box-shadow: 0 0 25px rgba(6, 182, 212, 0.3);
+        }
+
+        .card-icon-box { font-size: 2.5rem; color: var(--primary-cyan); margin-bottom: 1rem; }
+        .card-3d h3 { font-size: 1.3rem; margin-bottom: 0.8rem; }
+        .card-3d p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin-bottom: 1.2rem; }
+        .card-footer-info { font-size: 0.8rem; color: var(--primary-cyan); font-weight: 600; }
+
+        .contact-section { padding: 5rem 0; }
+        .contact-ultra-card {
+            background: var(--gradient-card);
+            border: 1px solid var(--border-glow);
+            border-radius: 28px;
+            padding: 3.5rem 2rem;
+            box-shadow: 0 0 40px rgba(6, 182, 212, 0.15);
+        }
+
+        .contact-nodes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin: 2.5rem 0; }
+        .contact-node {
+            background: rgba(15, 23, 42, 0.6);
+            padding: 1.5rem;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .contact-node:hover { transform: translateY(-5px); border-color: var(--primary-cyan); }
+        .node-icon { font-size: 2rem; color: var(--primary-cyan); margin-bottom: 0.8rem; }
+
+        .btn-glow-green {
+            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+            color: #fff;
+            padding: 0.8rem 1.6rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .btn-glow-green:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(37, 211, 102, 0.8); }
+
+        footer { padding: 2rem 0; border-top: 1px solid rgba(255, 255, 255, 0.05); color: var(--text-muted); font-size: 0.9rem; }
+
+        
+        .live-chat-trigger-btn {
+            position: fixed !important; bottom: 25px !important; right: 25px !important;
+            width: 70px !important; height: 70px !important; border-radius: 50% !important;
+            background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #6366f1 100%) !important;
+            display: flex !important; align-items: center !important; justify-content: center !important;
+            color: #ffffff !important; font-size: 1.8rem !important; cursor: pointer !important;
+            box-shadow: 0 0 30px rgba(6, 182, 212, 0.8), 0 0 50px rgba(99, 102, 241, 0.6) !important;
+            z-index: 999999 !important; border: 2px solid rgba(255, 255, 255, 0.8) !important;
+            transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+        }
+        .live-chat-trigger-btn:hover { transform: scale(1.1) rotate(5deg) !important; }
+        .live-chat-trigger-btn .status-pulse {
+            position: absolute; top: 2px; right: 2px; width: 16px; height: 16px;
+            background: #22c55e; border: 3px solid #070d19; border-radius: 50%; box-shadow: 0 0 8px #22c55e;
+        }
+
+        .chat-window {
+            position: fixed !important; bottom: 105px !important; right: 25px !important;
+            width: 380px !important; max-width: calc(100vw - 2rem) !important; height: 520px !important;
+            background: rgba(15, 23, 42, 0.95) !important; backdrop-filter: blur(25px) !important;
+            border: 1.5px solid var(--border-glow) !important; border-radius: 24px !important;
+            box-shadow: 0 0 50px rgba(6, 182, 212, 0.4), 0 20px 50px rgba(0, 0, 0, 0.9) !important;
+            z-index: 999999 !important; display: flex !important; flex-direction: column !important;
+            overflow: hidden !important; opacity: 0 !important; visibility: hidden !important;
+            transform: translateY(20px) scale(0.95) !important;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+        .chat-window.active { opacity: 1 !important; visibility: visible !important; transform: translateY(0) scale(1) !important; }
+
+        .chat-header {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.25) 0%, rgba(99, 102, 241, 0.25) 100%);
+            padding: 1.2rem 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .chat-header-info { display: flex; align-items: center; gap: 0.8rem; }
+        .chat-avatar {
+            width: 42px; height: 42px; border-radius: 50%; background: var(--gradient-main);
+            display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.2rem;
+            box-shadow: 0 0 15px var(--primary-cyan);
+        }
+        .chat-title-box h4 { font-size: 1rem; font-weight: 700; color: #fff; }
+        .chat-title-box span { font-size: 0.75rem; color: #22c55e; display: flex; align-items: center; gap: 0.3rem; font-weight: 600; }
+        .chat-close-btn { color: var(--text-muted); cursor: pointer; font-size: 1.3rem; }
+
+        .chat-body { flex: 1; padding: 1.2rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; }
+        .chat-msg { max-width: 85%; padding: 0.85rem 1.1rem; border-radius: 16px; font-size: 0.88rem; line-height: 1.5; }
+        .chat-msg.bot { background: rgba(30, 41, 59, 0.85); border: 1px solid rgba(6, 182, 212, 0.3); color: #f1f5f9; align-self: flex-start; }
+        .chat-msg.user { background: var(--gradient-main); color: #fff; align-self: flex-end; box-shadow: 0 0 15px rgba(6, 182, 212, 0.3); }
+
+        .chat-quick-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0 1.2rem 0.8rem 1.2rem; }
+        .chip-btn {
+            background: rgba(6, 182, 212, 0.12); border: 1px solid rgba(6, 182, 212, 0.5); color: var(--primary-cyan);
+            padding: 0.45rem 0.85rem; border-radius: 20px; font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease;
+        }
+        .chip-btn:hover { background: var(--gradient-main); color: #fff; border-color: transparent; }
+
+        .chat-footer { padding: 0.8rem 1.2rem 1.2rem 1.2rem; display: flex; align-items: center; gap: 0.6rem; background: rgba(15, 23, 42, 0.98); }
+        .chat-input {
+            flex: 1; background: rgba(30, 41, 59, 0.9); border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 25px; padding: 0.75rem 1.2rem; color: #fff; font-size: 0.88rem; outline: none;
+        }
+        .chat-send-btn {
+            width: 42px; height: 42px; border-radius: 50%; background: var(--gradient-main); border: none;
+            color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center;
+        }
+
+     
+          
+        @media (max-width: 992px) {
+            .hero-grid, .hero-stats-grid, .vision-grid, .cards-3d-grid, .contact-nodes-grid { grid-template-columns: 1fr; text-align: center; }
+            .mobile-toggle { display: block; }
+            .mobile-close { display: block; position: absolute; top: 1.5rem; right: 1.5rem; }
+            .nav-links-wrapper {
+                position: fixed; top: 0; right: -100%; width: 82%; max-width: 330px; height: 100vh;
+                background: rgba(7, 13, 25, 0.98); backdrop-filter: blur(25px); border-left: 1px solid var(--border-glow);
+                flex-direction: column; justify-content: center; padding: 2rem 1.5rem; gap: 0.8rem;
+                transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            .nav-links-wrapper.active { right: 0; }
+            .nav-links-wrapper .nav-item { width: 100%; height: 46px; display: flex; align-items: center; justify-content: flex-start; padding: 0 1rem !important; }
+            .chat-window { right: 1rem !important; left: 1rem !important; width: auto !important; bottom: 95px !important; height: 460px !important; }
+        }
+    </style>
+</head>
+
+<body data-page="home">
+
+   
+    <div class="cursor-glow" id="cursor-glow"></div>
+
+    <div id="intro-overlay" class="intro-overlay">
+        <div class="cinematic-intro-content">
+            <span class="intro-tagline">OSMAN DENİZ MART TASARIMI</span>
+            <h1 class="intro-main-heading">Özel Can Mart <br><span class="highlight-glow">Rehabilitasyon</span></h1>
+            <p class="intro-sub-text">Geleceğe Sevgi ve Uzmanlıkla Atılan Adım</p>
+        </div>
+    </div>
+
+    <!-- PARLAYAN FLOATING NAVBAR -->
+    <header class="header-floating">
+        <nav class="navbar-capsule">
+            <a href="index.html" class="brand-logo">
+                <div class="logo-orb"><i class="fa-solid fa-brain"></i></div>
+                <span class="logo-title">Özel Can Mart</span>
+            </a>
+
+            <div class="nav-links-wrapper" id="nav-menu">
+                <div class="mobile-close" id="nav-close"><i class="fa-solid fa-xmark"></i></div>
+                <a href="index.html" class="nav-item active"><i class="fa-solid fa-house"></i> Ana Sayfa</a>
+                <a href="ekibimiz.html" class="nav-item"><i class="fa-solid fa-user-doctor"></i> Ekibimiz</a>
+                <a href="calismalar.html" class="nav-item"><i class="fa-solid fa-book-open"></i> Dersler</a>
+                <a href="etkinlikler.html" class="nav-item"><i class="fa-solid fa-calendar-check"></i> Etkinlikler</a>
+                <a href="siniflarimiz.html" class="nav-item"><i class="fa-solid fa-school"></i> Sınıflarımız</a>
+                <a href="#contact" class="nav-item nav-item-btn"><i class="fa-solid fa-paper-plane"></i> İletişime Geç</a>
+            </div>
+
+            <div class="nav-right-block">
+                <div class="nav-social-icons">
+                    <a href="https://www.facebook.com/can.mart.2025?rdid=BGsj29o0iceK8N1b&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1Dt4Hjv6Bw%2F%3Fref%3D1#" target="_blank" class="social-icon fb" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/canmartdilkomozelegitim/" target="_blank" class="social-icon ig" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://wa.me/905534886301" target="_blank" class="social-icon wp" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+                <div class="mobile-toggle" id="nav-toggle"><i class="fa-solid fa-bars-staggered"></i></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero-section">
+            <div class="container hero-grid">
+                <div class="hero-text-box anim-hidden from-left">
+                    <div class="status-badge"><i class="fa-solid fa-star"></i> Engelleri Birlikte Aşıyoruz</div>
+                    <h1 class="hero-main-title">Sevgiyle Dokunuyor, Uzmanlıkla Büyütüyoruz.</h1>
+                    <h3 class="hero-director">Can Mart — <span class="highlight-text">Kurucu & Genel Müdür</span></h3>
+                    <p class="hero-description">Modern özel eğitim yöntemleri, duyu bütünleme alanları ve uzman kadromuzla çocuklarımızın geleceğere güvenle ilerlemesini sağlıyoruz.</p>
+
+                    <div class="hero-stats-grid">
+                        <div class="stat-card">
+                            <i class="fa-solid fa-face-smile stat-icon"></i>
+                            <div class="stat-info"><span class="stat-number">%98</span><span class="stat-label">Veli Memnuniyeti</span></div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fa-solid fa-user-graduate stat-icon"></i>
+                            <div class="stat-info"><span class="stat-number">150+</span><span class="stat-label">Mezun Öğrenci</span></div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fa-solid fa-award stat-icon"></i>
+                            <div class="stat-info"><span class="stat-number">18+ Yıl</span><span class="stat-label">Sektörel Hizmet</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-visual-box anim-hidden from-right">
+                    <img src="bülent.png" alt="Can Mart" class="hero-img">
+                </div>
+            </div>
+        </section>
+
+        <!-- VİZYONUMUZ & MİSYONUMUZ BÖLÜMÜ -->
+        <section class="vision-mission-section">
+            <div class="container">
+                <div class="section-title-wrapper text-center anim-hidden from-top">
+                    <span class="sub-badge">DEĞERLERİMİZ</span>
+                    <h2 class="main-title">Vizyonumuz ve Misyonumuz</h2>
+                </div>
+
+                <div class="vision-grid">
+                    <div class="vision-card anim-hidden from-left">
+                        <div class="vision-icon"><i class="fa-solid fa-eye"></i></div>
+                        <h3>Vizyonumuz</h3>
+                        <p>Özel eğitim ve rehabilitasyon alanında yenilikçi yaklaşımlarımız, uzman kadromuz ve üstün hizmet kalitemizle ulusal düzeyde örnek gösterilen, öncü ve lider bir kurum olmak; her çocuğun potansiyelini en üst düzeye çıkarmasını sağlamaktır.</p>
+                    </div>
+                    <div class="vision-card anim-hidden from-right">
+                        <div class="vision-icon"><i class="fa-solid fa-bullseye"></i></div>
+                        <h3>Misyonumuz</h3>
+                        <p>Özel gereksinimli bireylerin toplumsal hayata aktif katılımını desteklemek, bağımsız yaşam becerileri kazanmalarını sağlamak ve ailelerimize bu süreçte sevgi, güven ve profesyonellik temelli rehberlik sunmaktır.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES SECTION -->
+        <section class="services-section">
+            <div class="container">
+                <div class="section-title-wrapper text-center anim-hidden from-top">
+                    <span class="sub-badge">EĞİTİM YERLEŞKEMİZ</span>
+                    <h2 class="main-title">Ayrıcalıklı Eğitim İmkânlarımız</h2>
+                </div>
+
+                <div class="cards-3d-grid">
+                    <div class="card-3d anim-hidden from-left">
+                        <div class="card-icon-box"><i class="fa-solid fa-puzzle-piece"></i></div>
+                        <h3>Duyu Bütünleme Odaları</h3>
+                        <p>Dokunsal, görsel ve işitsel stimülasyon ile çocuklarımızın algı motor becerilerini geliştiriyoruz.</p>
+                        <div class="card-footer-info"><i class="fa-solid fa-circle-check"></i> İnteraktif Denge Parkurları</div>
+                    </div>
+                    <div class="card-3d anim-hidden from-bottom">
+                        <div class="card-icon-box"><i class="fa-solid fa-comments"></i></div>
+                        <h3>Dil ve Konuşma Terapisi</h3>
+                        <p>Artikülasyon ve akıcı konuşma bozukluklarına yönelik birebir seanslar uyguluyoruz.</p>
+                        <div class="card-footer-info"><i class="fa-solid fa-circle-check"></i> Bireysel Terapi Odaları</div>
+                    </div>
+                    <div class="card-3d anim-hidden from-right">
+                        <div class="card-icon-box"><i class="fa-solid fa-bus-simple"></i></div>
+                        <h3>Ücretsiz Özel Servis</h3>
+                        <p>Öğrencilerimizi kapılarından alıp eğitim sonrası tekrar ailelerine güvenle teslim ediyoruz.</p>
+                        <div class="card-footer-info"><i class="fa-solid fa-circle-check"></i> Rehber Personel Eşliğinde</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section class="contact-section" id="contact">
+            <div class="container">
+                <div class="contact-ultra-card anim-hidden from-bottom">
+                    <div class="contact-content text-center">
+                        <span class="sub-badge">BİZE ULAŞIN</span>
+                        <h2 style="font-size: 2.2rem; margin-top: 0.5rem;">Kapımız Size Her Zaman Açık</h2>
+                        <p style="color: var(--text-muted); margin-top: 0.5rem;">Detaylı bilgi almak veya randevu oluşturmak için bizimle iletişime geçebilirsiniz.</p>
+
+                        <div class="contact-nodes-grid">
+                            <div class="contact-node">
+                                <div class="node-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                                <h4>Açık Adresimiz</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.4rem;">Osmaniye Düziçi Şehit Asker Kemal Keskin Mahallesi Vadi Sokak No: 17</p>
+                            </div>
+                            <div class="contact-node">
+                                <div class="node-icon"><i class="fa-solid fa-phone-volume"></i></div>
+                                <h4>Telefon Hattımız</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.4rem;">+90 553 488 63 01</p>
+                            </div>
+                            <div class="contact-node">
+                                <div class="node-icon"><i class="fa-solid fa-envelope"></i></div>
+                                <h4>E-Posta Adresimiz</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.4rem;"><a href="mailto:canmartdilkom@gmail.com" style="color: inherit; text-decoration: none;">canmartdilkom@gmail.com</a></p>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                            <a href="tel:+905534886301" class="nav-item-btn" style="padding: 0.8rem 1.6rem; font-size: 1rem;"><i class="fa-solid fa-phone"></i> Şimdi Arayın</a>
+                            <a href="https://wa.me/905534886301" target="_blank" class="btn-glow-green"><i class="fa-brands fa-whatsapp"></i> WhatsApp Hattı</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- NEON CYBER AI LIVE CHAT -->
+    <div class="live-chat-trigger-btn" id="chat-trigger" title="Canlı Asistan"><i class="fa-solid fa-headset"></i><span class="status-pulse"></span></div>
+
+    <div class="chat-window" id="chat-window">
+        <div class="chat-header">
+            <div class="chat-header-info">
+                <div class="chat-avatar"><i class="fa-solid fa-robot"></i></div>
+                <div class="chat-title-box"><h4>Can Mart Asistan</h4><span><i class="fa-solid fa-circle" style="font-size: 8px;"></i> Çevrimiçi</span></div>
+            </div>
+            <div class="chat-close-btn" id="chat-close"><i class="fa-solid fa-xmark"></i></div>
+        </div>
+        <div class="chat-body" id="chat-body">
+            <div class="chat-msg bot">Merhaba! Ben Can Mart Okul Asistanı. Kurumumuz hakkında öğrenmek istediğiniz soruları aşağıdaki butonlara basarak veya yazarak sorabilirsiniz. 😊</div>
+        </div>
+        <div class="chat-quick-chips">
+            <button class="chip-btn" data-question="adres"><i class="fa-solid fa-location-dot"></i> Adres</button>
+            <button class="chip-btn" data-question="iletisim"><i class="fa-solid fa-phone"></i> İletişim</button>
+            <button class="chip-btn" data-question="saat"><i class="fa-solid fa-clock"></i> Açılış & Kapanış</button>
+            <button class="chip-btn" data-question="bolumler"><i class="fa-solid fa-graduation-cap"></i> Bölümler</button>
+            <button class="chip-btn" data-question="servis"><i class="fa-solid fa-bus"></i> Servis Var mı?</button>
+        </div>
+        <div class="chat-footer">
+            <input type="text" class="chat-input" id="chat-input" placeholder="Bir soru sorun..." autocomplete="off">
+            <button class="chat-send-btn" id="chat-send"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <footer class="text-center">
+        <div class="container"><p>&copy; 2026 Özel Can Mart Rehabilitasyon Merkezi — Tüm Hakları Saklıdır.</p></div>
+    </footer>
+
+    <!-- JAVASCRIPT KONTROLLERİ VE ANİMASYON MOTORU -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. FARE TAKİP EFEKTİ
+            const cursorGlow = document.getElementById('cursor-glow');
+            if (cursorGlow) {
+                window.addEventListener('mousemove', (e) => {
+                    cursorGlow.style.left = e.clientX + 'px';
+                    cursorGlow.style.top = e.clientY + 'px';
+                });
+            }
+
+            // 2. KİNEMATİK İNTRO (SADECE İLK GİRİŞTE 1 KEZ GÖRÜNÜR, YENİLEMEDE ÇIKMAZ)
+            const introOverlay = document.getElementById('intro-overlay');
+            if (introOverlay) {
+                // Tarayıcı hafızasında ilk giriş kontrolü (sessionStorage)
+                const hasVisited = sessionStorage.getItem('canmart_visited');
+
+                if (!hasVisited) {
+                    // İlk kez giriliyor, intro gösterilsin ve işaretlensin
+                    sessionStorage.setItem('canmart_visited', 'true');
+                    
+                    setTimeout(() => {
+                        introOverlay.classList.add('fade-out');
+                        setTimeout(() => {
+                            document.querySelectorAll('.hero-section .anim-hidden').forEach(el => {
+                                el.classList.add('anim-show');
+                            });
+                        }, 200);
+                    }, 2500);
+                } else {
+                    
+                    introOverlay.style.display = 'none';
+                    document.querySelectorAll('.anim-hidden').forEach(el => {
+                        el.classList.add('anim-show');
+                    });
+                }
+            }
+
+            
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px 0px -80px 0px',
+                threshold: 0.1
+            };
+
+            const animObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('anim-show');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const scrollElements = document.querySelectorAll('main > section:not(.hero-section) .anim-hidden, .vision-mission-section .anim-hidden');
+            scrollElements.forEach(el => {
+                animObserver.observe(el);
+            });
+
+            // 4. MOBİL MENÜ
+            const navToggle = document.getElementById('nav-toggle');
+            const navClose = document.getElementById('nav-close');
+            const navMenu = document.getElementById('nav-menu');
+
+            if (navToggle && navMenu) navToggle.addEventListener('click', () => navMenu.classList.add('active'));
+            if (navClose && navMenu) navClose.addEventListener('click', () => navMenu.classList.remove('active'));
+
+            document.querySelectorAll('.nav-item').forEach(link => {
+                link.addEventListener('click', () => { if (navMenu) navMenu.classList.remove('active'); });
+            });
+
+            // 5. LIVE CHAT VE ASİSTAN
+            const chatTrigger = document.getElementById('chat-trigger');
+            const chatWindow = document.getElementById('chat-window');
+            const chatClose = document.getElementById('chat-close');
+            const chatSend = document.getElementById('chat-send');
+            const chatInput = document.getElementById('chat-input');
+            const chatBody = document.getElementById('chat-body');
+            const chipBtns = document.querySelectorAll('.chip-btn');
+
+            if (chatTrigger && chatWindow) {
+                chatTrigger.addEventListener('click', () => chatWindow.classList.toggle('active'));
+            }
+            if (chatClose && chatWindow) {
+                chatClose.addEventListener('click', () => chatWindow.classList.remove('active'));
+            }
+
+            const botData = {
+                adres: "📍 **Adresimiz:** Şehit Asker Kemal Keskin Mahallesi, Vadi Sokak No: 17, Düziçi / Osmaniye.",
+                iletisim: "📞 **Telefon:** +90 553 488 63 01\n💬 **WhatsApp:** Aynı numaramızdan 7/24 bizlere mesaj gönderebilirsiniz.",
+                saat: "⏰ **Çalışma Saatlerimiz:** Kurumumuz Haftaiçi ve Cumartesi günleri 08:30 - 17:30 saatleri arasında açıktır.",
+                bolumler: "🎓 **Mevcut Bölüm ve Terapilerimiz:**\n• Duyu Bütünleme Terapisi Odaları\n• Dil dan Konuşma Terapisi\n• Zihinsel & Bedensel Gelişim Terapisi\n• Bireysel Özel Eğitim Derslikleri\n• Oyun Terapisi Alanı",
+                servis: "🚌 **Servis İmkânı:** Evet, öğrencilerimiz için rehber personel eşliğinde kapıdan alıp eve teslim eden ücretsiz özel servisimiz mevcuttur!"
+            };
+
+            function appendMessage(text, sender) {
+                const msgDiv = document.createElement('div');
+                msgDiv.classList.add('chat-msg', sender);
+                msgDiv.innerHTML = text.replace(/\n/g, '<br>');
+                chatBody.appendChild(msgDiv);
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }
+
+            function processQuery(text) {
+                appendMessage(text, 'user');
+                const cleanText = text.toLowerCase();
+                setTimeout(() => {
+                    if (cleanText.includes('adres') || cleanText.includes('nerede') || cleanText.includes('konum')) {
+                        appendMessage(botData.adres, 'bot');
+                    } else if (cleanText.includes('iletişim') || cleanText.includes('tel') || cleanText.includes('telefon') || cleanText.includes('numara')) {
+                        appendMessage(botData.iletisim, 'bot');
+                    } else if (cleanText.includes('saat') || cleanText.includes('açılış') || cleanText.includes('kapanış')) {
+                        appendMessage(botData.saat, 'bot');
+                    } else if (cleanText.includes('bölüm') || cleanText.includes('ders') || cleanText.includes('terapi')) {
+                        appendMessage(botData.bolumler, 'bot');
+                    } else if (cleanText.includes('servis') || cleanText.includes('ulaşım')) {
+                        appendMessage(botData.servis, 'bot');
+                    } else {
+                        appendMessage("Detaylı sorunuz için hazır soru butonlarını kullanabilir veya doğrudan **+90 553 488 63 01** numaramızı arayabilirsiniz.", 'bot');
+                    }
+                }, 350);
+            }
+
+            if (chatSend && chatInput) {
+                chatSend.addEventListener('click', () => {
+                    const text = chatInput.value.trim();
+                    if (text) { processQuery(text); chatInput.value = ''; }
+                });
+                chatInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        const text = chatInput.value.trim();
+                        if (text) { processQuery(text); chatInput.value = ''; }
+                    }
+                });
+            }
+
+            chipBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const qType = btn.getAttribute('data-question');
+                    appendMessage(btn.innerText, 'user');
+                    setTimeout(() => { appendMessage(botData[qType], 'bot'); }, 350);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

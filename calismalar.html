@@ -65,7 +65,7 @@
             mix-blend-mode: screen;
         }
 
-        /* İNTRO EKRANI (DİĞER SAYFALARDA OTOMATİK KALDIRILIR) */
+        /* İNTRO EKRANI */
         .intro-overlay {
             position: fixed;
             top: 0;
@@ -202,6 +202,20 @@
         .social-icon.wp { background: linear-gradient(135deg, #25d366 0%, #075e54 100%); box-shadow: 0 0 10px rgba(37, 211, 102, 0.7); }
         .social-icon:hover { transform: translateY(-3px) scale(1.15); }
 
+        /* MASAÜSTÜ / MOBİL SOSYAL İKON GÖRÜNÜRLÜĞÜ */
+        .mobile-only-social {
+            display: none;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            justify-content: center;
+            width: 100%;
+        }
+
+        .desktop-only-social {
+            display: flex;
+        }
+
         .mobile-toggle, .mobile-close { display: none; color: #fff; font-size: 1.4rem; cursor: pointer; }
 
         /* ==========================================
@@ -237,7 +251,6 @@
             margin: 0 auto;
         }
 
-        /* Çalışmalar / Dersler Grid Tasarımı */
         .studies-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -520,6 +533,9 @@
             .mobile-toggle { display: block; }
             .mobile-close { display: block; position: absolute; top: 1.5rem; right: 1.5rem; }
 
+            .desktop-only-social { display: none; }
+            .mobile-only-social { display: flex; }
+
             .nav-links-wrapper {
                 position: fixed;
                 top: 0;
@@ -558,7 +574,7 @@
     <!-- FARE TAKİP EFEKTİ -->
     <div class="cursor-glow" id="cursor-glow"></div>
 
-    <!-- İNTRO EKRANI (DİĞER SAYFALARDA OTOMATİK KALDIRILIR, ASLA GÖZÜKMEZ) -->
+    <!-- İNTRO EKRANI -->
     <div id="intro-overlay" class="intro-overlay" style="display: none;"></div>
 
     <!-- NAVBAR -->
@@ -569,20 +585,32 @@
                 <span class="logo-title">Özel Can Mart</span>
             </a>
 
+            <!-- AÇILIR MENÜ VE İÇERİĞİ -->
             <div class="nav-links-wrapper" id="nav-menu">
                 <div class="mobile-close" id="nav-close"><i class="fa-solid fa-xmark"></i></div>
                 
                 <a href="index.html" class="nav-item"><i class="fa-solid fa-house"></i> Ana Sayfa</a>
+                
                 <a href="ekibimiz.html" class="nav-item"><i class="fa-solid fa-user-doctor"></i> Ekibimiz</a>
                 <a href="calismalar.html" class="nav-item active"><i class="fa-solid fa-book-open"></i> Dersler</a>
                 <a href="etkinlikler.html" class="nav-item"><i class="fa-solid fa-calendar-check"></i> Etkinlikler</a>
                 <a href="siniflarimiz.html" class="nav-item"><i class="fa-solid fa-school"></i> Sınıflarımız</a>
+
                 
-                <a href="index.html#contact" class="nav-item nav-item-btn"><i class="fa-solid fa-paper-plane"></i> İletişime Geç</a>
+                <a href="iletisim.html" class="nav-item nav-item-btn"><i class="fa-solid fa-paper-plane"></i> Randevu Al</a>
+
+                <!-- Mobilde/Küçük Ekranlarda Menü İçinde Görünecek Sosyal İkonlar -->
+                <div class="nav-social-icons mobile-only-social">
+                    <a href="https://www.facebook.com/can.mart.2025?rdid=BGsj29o0iceK8N1b&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1Dt4Hjv6Bw%2F%3Fref%3D1#" target="_blank" class="social-icon fb" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/canmartdilkomozelegitim/" target="_blank" class="social-icon ig" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://wa.me/905534886301" target="_blank" class="social-icon wp" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
             </div>
 
+            <!-- MASAÜSTÜ EN SAĞ BLOK -->
             <div class="nav-right-block">
-                <div class="nav-social-icons">
+                <!-- Masaüstünde En Sağda Görünecek Sosyal İkonlar -->
+                <div class="nav-social-icons desktop-only-social">
                     <a href="https://www.facebook.com/can.mart.2025?rdid=BGsj29o0iceK8N1b&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1Dt4Hjv6Bw%2F%3Fref%3D1#" target="_blank" class="social-icon fb" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
                     <a href="https://www.instagram.com/canmartdilkomozelegitim/" target="_blank" class="social-icon ig" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
                     <a href="https://wa.me/905534886301" target="_blank" class="social-icon wp" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
@@ -667,7 +695,6 @@
 
         <div class="chat-quick-chips">
             <button class="chip-btn" data-question="dersler"><i class="fa-solid fa-book"></i> Dersler</button>
-            
         </div>
 
         <div class="chat-footer">
@@ -684,7 +711,6 @@
 
     <!-- JAVASCRIPT KONTROLLERİ -->
     <script>
-        
         document.addEventListener('DOMContentLoaded', () => {
             // Fare takip efekti
             const cursorGlow = document.getElementById('cursor-glow');

@@ -7,6 +7,7 @@
     
     <!-- FontAwesome & Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         /* ==========================================
@@ -19,7 +20,6 @@
             --primary-blue: #3b82f6;
             --accent-glow: rgba(6, 182, 212, 0.4);
             --gradient-main: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #6366f1 100%);
-            --gradient-card: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
             --border-glow: rgba(6, 182, 212, 0.5);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
@@ -29,7 +29,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         body {
@@ -44,12 +44,12 @@
 
         .container {
             width: 100%;
-            max-width: 1350px;
+            max-width: 1250px;
             margin: 0 auto;
             padding: 0 1.5rem;
         }
 
-        /* FARE TAKİP EFEKTİ (CURSOR GLOW) */
+        /* FARE TAKİP EFEKTİ */
         .cursor-glow {
             position: fixed;
             top: 0;
@@ -65,7 +65,9 @@
             mix-blend-mode: screen;
         }
 
-        /* NEON NAVBAR */
+        /* ==========================================
+           INDEX.HTML İLE BİREBİR AYNI NEON NAVBAR
+           ========================================== */
         .header-floating {
             position: fixed;
             top: 1.2rem;
@@ -143,13 +145,24 @@
         }
 
         .nav-item-btn {
-            background: var(--gradient-main);
+            background-color: #06b6d4;
+            background-image: var(--gradient-main);
             color: #fff !important;
             box-shadow: 0 0 15px rgba(6, 182, 212, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 30px;
             padding: 0.6rem 1.4rem;
             font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .nav-item-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(6, 182, 212, 0.8);
         }
 
         .nav-right-block {
@@ -162,6 +175,10 @@
             display: flex;
             align-items: center;
             gap: 0.6rem;
+        }
+
+        .mobile-social-container {
+            display: none;
         }
 
         .social-icon {
@@ -178,18 +195,23 @@
         }
 
         .social-icon.fb { background: linear-gradient(135deg, #1877f2 0%, #0052d4 100%); box-shadow: 0 0 10px rgba(24, 119, 242, 0.7); }
-        .social-icon.ig { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); box-shadow: 0 0 10px rgba(220, 39, 67, 0.7); }
+        .social-icon.ig { background: linear-gradient(45deg, #f09433 0%, #dc2743 50%, #bc1888 100%); box-shadow: 0 0 10px rgba(220, 39, 67, 0.7); }
         .social-icon.wp { background: linear-gradient(135deg, #25d366 0%, #075e54 100%); box-shadow: 0 0 10px rgba(37, 211, 102, 0.7); }
         .social-icon:hover { transform: translateY(-3px) scale(1.15); }
 
-        .mobile-toggle, .mobile-close { display: none; color: #fff; font-size: 1.4rem; cursor: pointer; }
+        .mobile-toggle, .mobile-close {
+            display: none;
+            color: #fff;
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
 
         /* ==========================================
            EKİBİMİZ ANA İÇERİK VE KART SİSTEMİ
            ========================================== */
         main {
             flex: 1;
-            padding: 9rem 0 5rem 0;
+            padding: 9.5rem 0 5rem 0;
             transition: filter 0.4s ease;
         }
 
@@ -205,7 +227,6 @@
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
-            -webkit-text-fill-color: transparent;
             display: inline-block;
             filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.4));
             margin-bottom: 0.8rem;
@@ -232,27 +253,24 @@
             user-select: none;
         }
 
-        /* 1. En Üstteki Özel Müdür Kartı Container */
         .director-card-container {
             display: flex;
             justify-content: center;
             width: 100%;
         }
 
-        /* 2'Lİ ALT SIRALAR (MÜDÜR KARTININ GENİŞLİĞİNE UYUMLU GRID) */
         .team-row-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 2.5rem;
             width: 100%;
-            max-width: 1325px; /* (650px * 2) + 2.5rem gap = 1325px */
+            max-width: 1325px;
             justify-items: center;
         }
 
-        /* TÜM KARTLARIN ORTAK TASARIMI VE GENİŞLİK STANDARDI (Müdür Kartı Boyutunda) */
         .team-card {
             width: 100%;
-            max-width: 650px; /* Bütün 6 kart müdür kartı genişliğindedir */
+            max-width: 650px;
             background: var(--bg-card);
             border: 1px solid rgba(6, 182, 212, 0.3);
             border-radius: 20px;
@@ -274,7 +292,6 @@
             box-shadow: 0 0 25px rgba(6, 182, 212, 0.4);
         }
 
-        /* Özel Müdür Kartı Stili (Diğer kartlarla aynı boyutta, özelleştirilmiş arka plan) */
         .team-card.director-card {
             background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9));
             border: 2px solid rgba(6, 182, 212, 0.8);
@@ -300,7 +317,6 @@
             100% { transform: translateY(100%) rotate(45deg); }
         }
 
-        /* Fotoğraf Alanları (Standartlaştırılmış Görsel Yüksekliği) */
         .card-avatar-box {
             width: 100%;
             height: 320px;
@@ -310,29 +326,13 @@
             margin-bottom: 1.2rem;
             box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
             background: #1e293b;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
-        .director-card .card-avatar-box {
-            border-width: 2.5px;
-            box-shadow: 0 0 25px var(--primary-cyan);
-        }
-
-        .card-avatar-box img {
+        .card-avatar-box picture, .card-avatar-box img {
             width: 100%;
             height: 100%;
+            display: block;
             object-fit: cover;
-        }
-
-        /* MASAÜSTÜ - MOBİL GÖRSEL AYRIMI */
-        .img-mobile {
-            display: none !important;
-        }
-
-        .img-desktop {
-            display: block !important;
         }
 
         .card-name {
@@ -351,7 +351,6 @@
             letter-spacing: 1px;
         }
 
-        /* Özgeçmişi Aç Butonu */
         .cv-open-btn {
             background: var(--gradient-main);
             color: #fff;
@@ -382,6 +381,7 @@
             width: 100vw;
             height: 100vh;
             z-index: 99999;
+            background: rgba(7, 13, 25, 0.75);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -389,7 +389,7 @@
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
-            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s ease;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
         }
 
         .cv-modal-overlay.active {
@@ -477,7 +477,7 @@
 
         .cv-close-modal-btn:hover { background: rgba(239, 68, 68, 0.8); }
 
-        /* NEON LIVE CHAT */
+        /* LIVE CHAT */
         .live-chat-trigger-btn {
             position: fixed !important;
             bottom: 25px !important;
@@ -500,7 +500,6 @@
 
         .live-chat-trigger-btn:hover {
             transform: scale(1.1) rotate(5deg) !important;
-            box-shadow: 0 0 45px rgba(6, 182, 212, 1), 0 0 70px rgba(99, 102, 241, 0.9) !important;
         }
 
         .live-chat-trigger-btn .status-pulse {
@@ -715,18 +714,11 @@
             text-align: center;
         }
 
-        /* RESPONSIVE (MOBİL UYUMLULUK) */
+        /* RESPONSIVE (INDEX.HTML DÜZENİ) */
         @media (max-width: 992px) {
-            /* Tablet ve mobilde resimleri değiştir */
-            .img-desktop {
-                display: none !important;
-            }
-            .img-mobile {
-                display: block !important;
-            }
-
             .mobile-toggle { display: block; }
             .mobile-close { display: block; position: absolute; top: 1.5rem; right: 1.5rem; }
+            .nav-social-icons { display: none; }
 
             .nav-links-wrapper {
                 position: fixed;
@@ -738,29 +730,36 @@
                 background: rgba(7, 13, 25, 0.98);
                 backdrop-filter: blur(25px);
                 border-left: 1px solid var(--border-glow);
+                display: flex;
                 flex-direction: column;
                 justify-content: center;
                 padding: 2rem 1.5rem;
                 gap: 0.8rem;
                 transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.8);
             }
 
             .nav-links-wrapper.active { right: 0; }
+            .nav-links-wrapper .nav-item { width: 100%; height: 46px; display: flex; align-items: center; justify-content: flex-start; padding: 0 1rem !important; }
 
-            .nav-links-wrapper .nav-item {
-                width: 100%;
-                height: 46px;
+            /* MOBİLDE SOSYAL MEDYA ALANI (INDEX.HTML) */
+            .mobile-social-container {
                 display: flex;
+                flex-direction: column;
                 align-items: center;
-                justify-content: flex-start;
-                padding: 0 1rem !important;
-                font-size: 0.95rem;
-                border-radius: 12px;
-                box-sizing: border-box;
+                gap: 0.8rem;
+                width: 100%;
+                margin-top: 1rem;
+                padding-top: 1rem;
+                border-top: 1px solid rgba(6, 182, 212, 0.2);
             }
 
-            /* Mobilde 2'li düzeni tekli sütuna düşür */
+            .mobile-social-icons {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 1rem;
+            }
+
             .team-row-grid {
                 grid-template-columns: 1fr;
             }
@@ -786,7 +785,10 @@
 </head>
 <body>
 
-    <!-- NAVBAR -->
+    <!-- FARE TAKİP EFEKTİ -->
+    <div class="cursor-glow" id="cursor-glow"></div>
+
+    <!-- INDEX.HTML İLE BİREBİR NAVBAR -->
     <header class="header-floating">
         <nav class="navbar-capsule">
             <a href="index.html" class="brand-logo">
@@ -796,29 +798,36 @@
 
             <div class="nav-links-wrapper" id="nav-menu">
                 <div class="mobile-close" id="nav-close"><i class="fa-solid fa-xmark"></i></div>
-                
                 <a href="index.html" class="nav-item"><i class="fa-solid fa-house"></i> Ana Sayfa</a>
                 <a href="ekibimiz.html" class="nav-item active"><i class="fa-solid fa-user-doctor"></i> Ekibimiz</a>
                 <a href="calismalar.html" class="nav-item"><i class="fa-solid fa-book-open"></i> Dersler</a>
                 <a href="etkinlikler.html" class="nav-item"><i class="fa-solid fa-calendar-check"></i> Etkinlikler</a>
                 <a href="siniflarimiz.html" class="nav-item"><i class="fa-solid fa-school"></i> Sınıflarımız</a>
-                
                 <a href="index.html#contact" class="nav-item nav-item-btn"><i class="fa-solid fa-paper-plane"></i> İletişime Geç</a>
+
+                <!-- MOBİL MENÜ SOSYAL MEDYA ALANI (INDEX.HTML İLE AYNI) -->
+                <div class="mobile-social-container">
+                    <div class="mobile-social-icons">
+                        <a href="https://www.facebook.com/can.mart.2025?rdid=BGsj29o0iceK8N1b&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1Dt4Hjv6Bw%2F%3Fref%3D1#" target="_blank" class="social-icon fb" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/canmartdilkomozelegitim/" target="_blank" class="social-icon ig" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://wa.me/905534886301" target="_blank" class="social-icon wp" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
             </div>
 
             <div class="nav-right-block">
+                <!-- MASAÜSTÜ SOSYAL MEDYA ALANI (INDEX.HTML İLE AYNI) -->
                 <div class="nav-social-icons">
                     <a href="https://www.facebook.com/can.mart.2025?rdid=BGsj29o0iceK8N1b&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1Dt4Hjv6Bw%2F%3Fref%3D1#" target="_blank" class="social-icon fb" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
                     <a href="https://www.instagram.com/canmartdilkomozelegitim/" target="_blank" class="social-icon ig" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
                     <a href="https://wa.me/905534886301" target="_blank" class="social-icon wp" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
                 </div>
-                
                 <div class="mobile-toggle" id="nav-toggle"><i class="fa-solid fa-bars-staggered"></i></div>
             </div>
         </nav>
     </header>
 
-    <!-- ANA GÖVDE (MÜDÜR + 2 - 2 - 2 SIRALI EKİP KARTLARI) -->
+    <!-- ANA GÖVDE -->
     <main>
         <div class="container">
             <div class="page-header-container">
@@ -828,14 +837,14 @@
 
             <div class="team-grid-wrapper" id="team-grid-wrapper">
 
-                <!-- 1. MÜDÜR KARTI -->
+                <!-- MÜDÜR KARTI -->
                 <div class="director-card-container">
                     <div class="team-card director-card" data-member="mudur">
                         <div class="card-avatar-box">
-                            <!-- Masaüstü Görseli (Normal) -->
-                            <img src="sibel.jpg" alt="Kurum Müdürü" class="img-desktop">
-                            <!-- Mobil / Tablet Görseli -->
-                            <img src="sibel kopyası.jpg" alt="Kurum Müdürü" class="img-mobile">
+                            <picture>
+                                <source media="(max-width: 992px)" srcset="ssbel.jpg">
+                                <img src="sibel.jpg" alt="Sibel Mart - Kurum Müdürü" loading="lazy">
+                            </picture>
                         </div>
                         <h2 class="card-name">Sibel Mart</h2>
                         <span class="card-role"><i class="fa-solid fa-crown" style="color: #fbbf24;"></i> Kurum Müdürü & Uzman Eğitmen</span>
@@ -845,14 +854,14 @@
                     </div>
                 </div>
 
-                <!-- 2. İLK SIRA (2 Kart) -->
+                <!-- 1. SIRA (2 Kart) -->
                 <div class="team-row-grid">
                     <div class="team-card" data-member="uzman1">
                         <div class="card-avatar-box">
-                            <!-- Masaüstü Görseli (Normal) -->
-                            <img src="irems.jpg" alt="Uzman" class="img-desktop">
-                            <!-- Mobil / Tablet Görseli -->
-                            <img src="irem.png" alt="Uzman" class="img-mobile">
+                            <picture>
+                                <source media="(max-width: 992px)" srcset="irem.png">
+                                <img src="irems.jpg" alt="Fatma İrem Aksay" loading="lazy">
+                            </picture>
                         </div>
                         <h3 class="card-name">Fatma İrem Aksay</h3>
                         <span class="card-role">Dil Konuşma Terapisti</span>
@@ -863,30 +872,30 @@
 
                     <div class="team-card" data-member="uzman2">
                         <div class="card-avatar-box">
-                            <!-- Masaüstü Görseli (Normal) -->
-                            <img src="tugce.jpg" alt="Uzman" class="img-desktop">
-                            <!-- Mobil / Tablet Görseli -->
-                            <img src="tugcee.jpg" alt="Uzman" class="img-mobile">
+                            <picture>
+                                <source media="(max-width: 992px)" srcset="tugcee.jpg">
+                                <img src="tugce.jpg" alt="Tuğçe Güzel" loading="lazy">
+                            </picture>
                         </div>
                         <h3 class="card-name">Tuğçe Güzel</h3>
-                        <span class="card-role">REHBERLİK VE PSİKOLOJİK DANIŞMAN</span>
+                        <span class="card-role">Rehberlik ve Psikolojik Danışman</span>
                         <button class="cv-open-btn" onclick="openCV('uzman2')">
                             <i class="fa-solid fa-file-lines"></i> Özgeçmişi Aç
                         </button>
                     </div>
                 </div>
 
-                <!-- 3. İKİNCİ SIRA (2 Kart) -->
+                <!-- 2. SIRA (2 Kart) -->
                 <div class="team-row-grid">
                     <div class="team-card" data-member="uzman3">
                         <div class="card-avatar-box">
-                            <!-- Masaüstü Görseli (Normal) -->
-                            <img src="SSULTAN.jpg" alt="Uzman" class="img-desktop">
-                            <!-- Mobil / Tablet Görseli -->
-                            <img src="Unknown.jpg" alt="Uzman" class="img-mobile">
+                            <picture>
+                                <source media="(max-width: 992px)" srcset="Unknown.jpg">
+                                <img src="SSULTAN.jpg" alt="Sultan Duzcu" loading="lazy">
+                            </picture>
                         </div>
                         <h3 class="card-name">Sultan Duzcu</h3>
-                        <span class="card-role">ÖZEL EĞİTİM</span>
+                        <span class="card-role">Özel Eğitim Öğreticisi</span>
                         <button class="cv-open-btn" onclick="openCV('uzman3')">
                             <i class="fa-solid fa-file-lines"></i> Özgeçmişi Aç
                         </button>
@@ -894,30 +903,30 @@
 
                     <div class="team-card" data-member="uzman4">
                         <div class="card-avatar-box">
-                            <!-- Masaüstü Görseli (Normal) -->
-                            <img src="iremay.jpg" alt="Uzman" class="img-desktop">
-                            <!-- Mobil / Tablet Görseli -->
-                            <img src="iremmm.jpg" alt="Uzman" class="img-mobile">
+                            <picture>
+                                <source media="(max-width: 992px)" srcset="iremmm.jpg">
+                                <img src="iremay.jpg" alt="İrem Ay Tuzlu" loading="lazy">
+                            </picture>
                         </div>
                         <h3 class="card-name">İrem Ay Tuzlu</h3>
-                        <span class="card-role">ÇOCUK GELİŞİMİ</span>
+                        <span class="card-role">Çocuk Gelişimi Uzmanı</span>
                         <button class="cv-open-btn" onclick="openCV('uzman4')">
                             <i class="fa-solid fa-file-lines"></i> Özgeçmişi Aç
                         </button>
                     </div>
                 </div>
 
-                <!-- 4. ÜÇÜNCÜ SIRA (2 Kart) -->
+                <!-- 3. SIRA (2 Kart) -->
                 <div class="team-row-grid">
                     <div class="team-card" data-member="uzman5">
                         <div class="card-avatar-box">
-                            <!-- Masaüstü Görseli (Normal) -->
-                            <img src="elif.jpg" alt="Uzman" class="img-desktop">
-                            <!-- Mobil / Tablet Görseli -->
-                            <img src="eliff.jpg" alt="Uzman" class="img-mobile">
+                            <picture>
+                                <source media="(max-width: 992px)" srcset="eliff.jpg">
+                                <img src="elif.jpg" alt="Elif Gündeş" loading="lazy">
+                            </picture>
                         </div>
                         <h3 class="card-name">Elif Gündeş</h3>
-                        <span class="card-role">ÖZEL EĞİTİM</span>
+                        <span class="card-role">Özel Eğitim Öğretmeni</span>
                         <button class="cv-open-btn" onclick="openCV('uzman5')">
                             <i class="fa-solid fa-file-lines"></i> Özgeçmişi Aç
                         </button>
@@ -925,13 +934,13 @@
 
                     <div class="team-card" data-member="uzman6">
                         <div class="card-avatar-box">
-                            <!-- Masaüstü Görseli (Normal) -->
-                            <img src="selvers.jpg" alt="Uzman" class="img-desktop">
-                            <!-- Mobil / Tablet Görseli -->
-                            <img src="selverm.jpg" alt="Uzman" class="img-mobile">
+                            <picture>
+                                <source media="(max-width: 992px)" srcset="selverm.jpg">
+                                <img src="selvers.jpg" alt="Selver Ede" loading="lazy">
+                            </picture>
                         </div>
                         <h3 class="card-name">Selver Ede</h3>
-                        <span class="card-role">ÖZEL EĞİTİM</span>
+                        <span class="card-role">Özel Eğitim Alan Öğretmeni</span>
                         <button class="cv-open-btn" onclick="openCV('uzman6')">
                             <i class="fa-solid fa-file-lines"></i> Özgeçmişi Aç
                         </button>
@@ -942,7 +951,7 @@
         </div>
     </main>
 
-    <!-- ÖZGEÇMİŞ MODAL / PANEL YAPISI -->
+    <!-- ÖZGEÇMİŞ MODAL YAPISI -->
     <div class="cv-modal-overlay" id="cv-modal-overlay">
         <div class="cv-dual-container">
             <div class="cv-side-card cv-left-profile">
@@ -961,7 +970,7 @@
         </div>
     </div>
 
-    <!-- NEON CYBER AI LIVE CHAT -->
+    <!-- LIVE CHAT -->
     <div class="live-chat-trigger-btn" id="chat-trigger" title="Canlı Asistan">
         <i class="fa-solid fa-headset"></i>
         <span class="status-pulse"></span>
@@ -1003,9 +1012,8 @@
         </div>
     </footer>
 
-    <!-- JAVASCRIPT KONTROLLERİ -->
+    <!-- JAVASCRIPT -->
     <script>
-        /* MODAL İÇİN YALNIZCA "m" TAKILI OLAN RESİMLER TANIMLANDI */
         const cvDatabase = {
             mudur: {
                 name: "Sibel Mart",
@@ -1099,32 +1107,50 @@
             document.getElementById('modal-role').innerText = data.role;
             document.getElementById('modal-bio').innerText = data.bio;
 
+            const modal = document.getElementById('cv-modal-overlay');
             document.getElementById('team-grid-wrapper').classList.add('blurred');
-            document.getElementById('cv-modal-overlay').classList.add('active');
+            modal.classList.add('active');
         }
 
         function closeCV() {
+            const modal = document.getElementById('cv-modal-overlay');
             document.getElementById('team-grid-wrapper').classList.remove('blurred');
-            document.getElementById('cv-modal-overlay').classList.remove('active');
+            modal.classList.remove('active');
         }
 
         document.addEventListener('DOMContentLoaded', () => {
+            // Fare Takip Glow Efekti
+            const glow = document.getElementById('cursor-glow');
+            if (glow) {
+                window.addEventListener('mousemove', (e) => {
+                    glow.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+                });
+            }
+
+            // Dış Arka Plana Tıklayınca Modalı Kapatma
+            const cvOverlay = document.getElementById('cv-modal-overlay');
+            cvOverlay.addEventListener('click', (e) => {
+                if (e.target === cvOverlay) closeCV();
+            });
+
+            // ESC Tuşuna Basınca Modalı Kapatma
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeCV();
+            });
+
+            // Mobil Navigasyon Kontrolleri (INDEX.HTML İLE BİREBİR)
             const navToggle = document.getElementById('nav-toggle');
             const navClose = document.getElementById('nav-close');
             const navMenu = document.getElementById('nav-menu');
 
-            if (navToggle && navMenu) {
-                navToggle.addEventListener('click', () => navMenu.classList.add('active'));
-            }
-            if (navClose && navMenu) {
-                navClose.addEventListener('click', () => navMenu.classList.remove('active'));
-            }
+            if (navToggle && navMenu) navToggle.addEventListener('click', () => navMenu.classList.add('active'));
+            if (navClose && navMenu) navClose.addEventListener('click', () => navMenu.classList.remove('active'));
+
             document.querySelectorAll('.nav-item').forEach(link => {
-                link.addEventListener('click', () => {
-                    if (navMenu) navMenu.classList.remove('active');
-                });
+                link.addEventListener('click', () => { if (navMenu) navMenu.classList.remove('active'); });
             });
 
+            // Chatbot İşlevleri
             const chatTrigger = document.getElementById('chat-trigger');
             const chatWindow = document.getElementById('chat-window');
             const chatClose = document.getElementById('chat-close');
@@ -1134,10 +1160,14 @@
             const chipBtns = document.querySelectorAll('.chip-btn');
 
             if (chatTrigger && chatWindow) {
-                chatTrigger.addEventListener('click', () => chatWindow.classList.toggle('active'));
+                chatTrigger.addEventListener('click', () => {
+                    chatWindow.classList.toggle('active');
+                });
             }
             if (chatClose && chatWindow) {
-                chatClose.addEventListener('click', () => chatWindow.classList.remove('active'));
+                chatClose.addEventListener('click', () => {
+                    chatWindow.classList.remove('active');
+                });
             }
 
             const botResponses = {

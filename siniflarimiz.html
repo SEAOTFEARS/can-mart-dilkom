@@ -144,28 +144,26 @@
             font-weight: 700;
         }
 
-        .nav-right-block {
-            display: flex;
-            align-items: center;
-            gap: 1.2rem;
-        }
-
+        /* MENÜ İÇİ SOSYAL MEDYA İKONLARI */
         .nav-social-icons {
             display: flex;
             align-items: center;
             gap: 0.6rem;
+            margin-left: 0.5rem;
+            padding-left: 0.8rem;
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
         }
 
         .social-icon {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 38px;
-            height: 38px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             color: #ffffff !important;
             text-decoration: none;
-            font-size: 1rem;
+            font-size: 0.95rem;
             transition: all 0.3s ease;
         }
 
@@ -209,14 +207,12 @@
             margin: 0 auto;
         }
 
-        /* GRID: 1 ÜSTTE ORTADA + 4 ALTTA (2x2) DÜZENİ */
         .classes-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 2.5rem;
         }
 
-        /* İlk kartın üst satırı kaplayıp ortalanması */
         .class-card.featured-card {
             grid-column: 1 / -1;
             max-width: 650px;
@@ -224,7 +220,6 @@
             margin: 0 auto;
         }
 
-        /* ULTRA MODERN CARD (Yükseklik: %80 Görsel, %20 Bilgi/Buton) */
         .class-card {
             position: relative;
             height: 480px;
@@ -243,7 +238,6 @@
             box-shadow: 0 0 45px rgba(6, 182, 212, 0.6), 0 30px 60px rgba(0, 0, 0, 0.9);
         }
 
-        /* %80 FOTOĞRAF ALANI */
         .class-img-box {
             position: absolute;
             top: 0;
@@ -261,7 +255,7 @@
         }
 
         .class-card:hover .class-img-box img {
-            transform: scale(1.15); /* Üzerine gelince zarif yakınlaştırma */
+            transform: scale(1.15);
         }
 
         .class-img-gradient {
@@ -289,7 +283,6 @@
             box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
         }
 
-        /* %20 İÇERİK ALANI (Alt Kısım) */
         .class-info-box {
             position: absolute;
             bottom: 0;
@@ -350,7 +343,7 @@
             transform: scale(1.1);
         }
 
-        /* MODAL (DETAYLI İNCELEME PENCERESİ) */
+        /* MODAL */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -473,9 +466,7 @@
             transform: scale(1.1);
         }
 
-        /* ==========================================
-           NEON LIVE CHAT STİLLERİ
-           ========================================== */
+        /* LIVE CHAT STİLLERİ */
         .live-chat-trigger-btn {
             position: fixed !important;
             bottom: 25px !important;
@@ -691,6 +682,31 @@
             box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
         }
 
+        /* SOSYAL MEDYA İKONLARI VE İNCE MAVİ ÇİZGİ DÜZENLEMESİ */
+.nav-social-icons {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-left: 0.8rem;
+    padding-left: 1rem;
+    border-left: 1.5px solid rgba(6, 182, 212, 0.6); /* Masaüstü için dikey ince mavi çizgi */
+}
+
+/* MOBİL UYUMLULUK DÜZENLEMESİ */
+@media (max-width: 992px) {
+    .nav-social-icons {
+        margin-left: 0;
+        padding-left: 0;
+        border-left: none;
+        margin-top: 1.2rem;
+        padding-top: 1.2rem;
+        border-top: 1.5px solid rgba(6, 182, 212, 0.6); /* Mobil menü için yatay ince mavi çizgi */
+        justify-content: center;
+        width: 100%;
+    }
+}
+
+
         footer {
             padding: 2rem 0;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -731,6 +747,15 @@
 
             .nav-links-wrapper.active { right: 0; }
             .nav-links-wrapper .nav-item { width: 100%; height: 46px; display: flex; align-items: center; padding: 0 1rem !important; }
+            
+            .nav-social-icons {
+                margin-left: 0;
+                padding-left: 0;
+                border-left: none;
+                margin-top: 1rem;
+                justify-content: center;
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -754,23 +779,20 @@
                 <a href="calismalar.html" class="nav-item"><i class="fa-solid fa-book-open"></i> Dersler</a>
                 <a href="etkinlikler.html" class="nav-item"><i class="fa-solid fa-calendar-check"></i> Etkinlikler</a>
                 <a href="siniflarimiz.html" class="nav-item active"><i class="fa-solid fa-school"></i> Sınıflarımız</a>
-                
                 <a href="index.html#contact" class="nav-item nav-item-btn"><i class="fa-solid fa-paper-plane"></i> İletişime Geç</a>
-            </div>
 
-            <div class="nav-right-block">
                 <div class="nav-social-icons">
                     <a href="https://www.facebook.com/can.mart.2025?rdid=BGsj29o0iceK8N1b&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1Dt4Hjv6Bw%2F%3Fref%3D1#" target="_blank" class="social-icon fb" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
                     <a href="https://www.instagram.com/canmartdilkomozelegitim/" target="_blank" class="social-icon ig" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
                     <a href="https://wa.me/905534886301" target="_blank" class="social-icon wp" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
                 </div>
-                
-                <div class="mobile-toggle" id="nav-toggle"><i class="fa-solid fa-bars-staggered"></i></div>
             </div>
+
+            <div class="mobile-toggle" id="nav-toggle"><i class="fa-solid fa-bars-staggered"></i></div>
         </nav>
     </header>
 
-    <!-- ANA İÇERİK - 5'Lİ SINIFLAR (1 ÜSTTE ORTADA + 4 ALTTA 2x2) -->
+    <!-- ANA İÇERİK - 5'Lİ SINIFLAR -->
     <main>
         <div class="container">
             <div class="page-header-container">
@@ -780,7 +802,7 @@
 
             <div class="classes-grid">
                 
-                <!-- Sınıf Kart 1 (Üstte Ortada Tek Kart) -->
+                <!-- Sınıf Kart 1 -->
                 <div class="class-card featured-card" data-title="Dil ve Konuşma Terapisi Sınıfı" data-desc="İletişim becerilerini geliştirmeye yönelik akustik yalıtımlı, odak artırıcı özel terapi ve çalışma salonu. Profesyonel dil terapisi ekipmanları içerir." data-capacity="Birebir Seans" data-type="Dil & İletişim">
                     <div class="class-img-box">
                         <img src="DİL.ODA.jpg" alt="Dil ve Konuşma Sınıfı">
@@ -796,7 +818,7 @@
                     </div>
                 </div>
 
-                <!-- Sınıf Kart 2 (Sol Alt) -->
+                <!-- Sınıf Kart 2 -->
                 <div class="class-card" data-title="Özgür Öğrenme Güçlüğü Sınıfı" data-desc="Öğrencimizin bireysel öğrenme hızına ve potansiyeline tam uyum sağlayan özel odaklı çalışma alanı. Uzman eğitmenler gözetiminde birebir seanslar yürütülmektedir." data-capacity="Max. 2 Kişi" data-type="Bireysel Gelişim">
                     <div class="class-img-box">
                         <img src="od1.jpg" alt="Özgür Öğrenme Güçlüğü Sınıfı">
@@ -812,7 +834,7 @@
                     </div>
                 </div>
 
-                <!-- Sınıf Kart 3 (Sağ Alt) -->
+                <!-- Sınıf Kart 3 -->
                 <div class="class-card" data-title="İşitme Engelliler Bireysel Eğitim Sınıfı" data-desc="İşitme kaybı yaşayan bireyler için özel akustik ve görsel materyallerle donatılmış destekleyici bireysel eğitim sınıfı." data-capacity="Birebir Seans" data-type="İşitme Destek">
                     <div class="class-img-box">
                         <img src="oda2.jpg" alt="İşitme Engelliler Bireysel Eğitim Sınıfı">
@@ -828,7 +850,7 @@
                     </div>
                 </div>
 
-                <!-- Sınıf Kart 4 (Sol En Alt) -->
+                <!-- Sınıf Kart 4 -->
                 <div class="class-card" data-title="Zihinsel Engelliler Bireysel Eğitim Sınıfı" data-desc="Bilişsel becerileri geliştirmek ve öz bakım yetilerini güçlendirmek için uyarlanmış özel materyallerle desteklenmiş sınıf ortamı." data-capacity="Birebir Seans" data-type="Zihinsel Gelişim">
                     <div class="class-img-box">
                         <img src="oda3.jpg" alt="Zihinsel Engelliler Bireysel Eğitim Sınıfı">
@@ -844,7 +866,7 @@
                     </div>
                 </div>
 
-                <!-- Sınıf Kart 5 (Sağ En Alt) -->
+                <!-- Sınıf Kart 5 -->
                 <div class="class-card" data-title="Otizm Farkındalık Sınıfı" data-desc="Otizm spektrumundaki bireylerin duyusal hassasiyetlerine uygun, rahatlatıcı, düzenli ve odaklanmayı artıran özel olarak yapılandırılmış eğitim ortamı." data-capacity="Max. 3 Kişi" data-type="Otizm Spektrum">
                     <div class="class-img-box">
                         <img src="oda5.jpg" alt="Otizm Farkındalık Sınıfı">
@@ -958,7 +980,6 @@
 
             classCards.forEach(card => {
                 card.addEventListener('click', () => {
-                    // Kartın içindeki img tag'inin src'sini doğrudan alır
                     const cardImgSrc = card.querySelector('.class-img-box img').getAttribute('src');
                     modalImg.src = cardImgSrc;
                     

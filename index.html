@@ -2,8 +2,51 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Özel Can Mart Rehabilitasyon Merkezi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <!-- ==========================================
+       GELİŞMİŞ SEO VE SOSYAL MEDYA OPTİMİZASYONU
+       ========================================== -->
+    <title>Özel Can Mart Rehabilitasyon Merkezi | Düziçi Özel Eğitim & Dil Terapisi</title>
+    <meta name="description" content="Osmaniye Düziçi Özel Can Mart Rehabilitasyon Merkezi; duyu bütünleme, dil ve konuşma terapisi, özel eğitim ve zihinsel gelişim desteği sunmaktadır. Ücretsiz özel servis imkanıyla yanınızdayız.">
+    <meta name="keywords" content="can mart rehabilitasyon, düziçi özel eğitim, osmaniye rehabilitasyon merkezi, dil ve konuşma terapisi düziçi, duyu bütünleme, özel ders, engelli eğitimi">
+    <meta name="author" content="Özel Can Mart Rehabilitasyon Merkezi">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.canmartrehabilitasyon.com/">
+
+    <!-- Open Graph / Facebook / WhatsApp Önizleme Metatag'leri -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.canmartrehabilitasyon.com/">
+    <meta property="og:title" content="Özel Can Mart Rehabilitasyon Merkezi | Düziçi Özel Eğitim">
+    <meta property="og:description" content="Sevgiyle dokunuyor, uzmanlıkla büyütüyoruz. Duyu bütünleme, dil terapisi ve bireysel eğitim desteğimizle hizmetinizdeyiz.">
+    <meta property="og:image" content="https://www.canmartrehabilitasyon.com/bülent.png">
+
+    <!-- Twitter Card Metatag'leri -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Özel Can Mart Rehabilitasyon Merkezi">
+    <meta name="twitter:description" content="Osmaniye Düziçi'nde uzman kadromuz ve özel imkânlarımızla hizmet veriyoruz.">
+    <meta name="twitter:image" content="https://www.canmartrehabilitasyon.com/bülent.png">
+
+    <!-- Google Arama Motoru Şema (Structured Data - LocalBusiness) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SpecializedSchool",
+      "name": "Özel Can Mart Rehabilitasyon Merkezi",
+      "image": "https://www.canmartrehabilitasyon.com/bülent.png",
+      "telephone": "+905534886301",
+      "email": "canmartdilkom@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Şehit Asker Kemal Keskin Mahallesi Vadi Sokak No: 17",
+        "addressLocality": "Düziçi",
+        "addressRegion": "Osmaniye",
+        "addressCountry": "TR"
+      },
+      "url": "https://www.canmartrehabilitasyon.com/",
+      "openingHours": "Mo-Sa 08:30-17:30"
+    }
+    </script>
     
     <!-- FontAwesome & Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -26,18 +69,22 @@
             --text-muted: #94a3b8;
         }
 
+        html, body {
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden !important;
+            position: relative;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            overflow-x: hidden;
-            position: relative;
         }
 
         .container {
@@ -91,14 +138,14 @@
             transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .anim-hidden.from-top    { transform: translateY(-60px); }
-        .anim-hidden.from-bottom { transform: translateY(60px); }
-        .anim-hidden.from-left   { transform: translateX(-80px); }
-        .anim-hidden.from-right  { transform: translateX(80px); }
+        .anim-hidden.from-top    { transform: translateY(-50px); }
+        .anim-hidden.from-bottom { transform: translateY(50px); }
+        .anim-hidden.from-left   { transform: translateX(-50px); }
+        .anim-hidden.from-right  { transform: translateX(50px); }
 
         .anim-hidden.anim-show {
             opacity: 1;
-            transform: translate(0, 0);
+            transform: translate(0, 0) !important;
         }
 
         /* ==========================================
@@ -126,6 +173,8 @@
             position: fixed;
             top: 0;
             left: 0;
+            right: 0;
+            bottom: 0;
             width: 100vw;
             height: 100vh;
             background: #030712;
@@ -147,39 +196,40 @@
         .intro-overlay::after {
             content: '';
             position: absolute;
-            width: 500px;
-            height: 500px;
+            width: 300px;
+            height: 300px;
             border-radius: 50%;
-            filter: blur(100px);
+            filter: blur(80px);
             z-index: 1;
-            opacity: 0.15;
+            opacity: 0.25;
             animation: ambientShift 6s ease-in-out infinite alternate;
         }
 
         .intro-overlay::before {
             background: #06b6d4;
-            top: -100px;
-            left: -100px;
+            top: -50px;
+            left: -50px;
         }
 
         .intro-overlay::after {
             background: #6366f1;
-            bottom: -100px;
-            right: -100px;
+            bottom: -50px;
+            right: -50px;
             animation-delay: -3s;
         }
 
         @keyframes ambientShift {
             0% { transform: scale(1) translate(0, 0); }
-            100% { transform: scale(1.3) translate(40px, 40px); }
+            100% { transform: scale(1.3) translate(20px, 20px); }
         }
 
         .cinematic-intro-content {
             position: relative;
             z-index: 2;
             text-align: center;
+            width: 100%;
             max-width: 900px;
-            padding: 0 2rem;
+            padding: 0 1.5rem;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -188,15 +238,15 @@
 
         .intro-tagline {
             font-family: 'Outfit', sans-serif;
-            font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+            font-size: clamp(0.9rem, 2.5vw, 1.6rem);
             text-transform: uppercase;
-            letter-spacing: 8px;
+            letter-spacing: 4px;
             font-weight: 800;
             background: linear-gradient(135deg, #00f2fe 0%, #4facfe 35%, #00c6ff 70%, #90e0ef 100%);
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 25px rgba(0, 242, 254, 0.8)) drop-shadow(0 0 50px rgba(79, 172, 254, 0.6));
+            filter: drop-shadow(0 0 25px rgba(0, 242, 254, 0.8));
             opacity: 0;
             transform: translateY(20px);
             animation: cinematicReveal 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
@@ -204,7 +254,7 @@
 
         .intro-main-heading {
             font-family: 'Outfit', sans-serif;
-            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-size: clamp(2.2rem, 6vw, 5rem);
             font-weight: 900;
             line-height: 1.1;
             color: #ffffff;
@@ -216,7 +266,7 @@
 
         .intro-sub-text {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: clamp(1rem, 2vw, 1.25rem);
+            font-size: clamp(0.9rem, 2vw, 1.25rem);
             color: var(--text-muted);
             font-weight: 400;
             letter-spacing: 1px;
@@ -244,6 +294,7 @@
             display: flex;
             justify-content: center;
             padding: 0 1.5rem;
+            width: 100%;
         }
 
         .navbar-capsule {
@@ -257,7 +308,7 @@
             justify-content: space-between;
             width: 100%;
             max-width: 1350px;
-            box-shadow: 0 0 25px rgba(6, 182, 212, 0.4), 0 0 45px rgba(59, 130, 246, 0.25), inset 0 0 15px rgba(6, 182, 212, 0.2);
+            box-shadow: 0 0 25px rgba(6, 182, 212, 0.4), 0 0 45px rgba(59, 130, 246, 0.25);
         }
 
         .brand-logo {
@@ -342,6 +393,8 @@
             display: flex;
             align-items: center;
             gap: 0.6rem;
+            padding-left: 1rem;
+            border-left: 1.5px solid rgba(6, 182, 212, 0.6);
         }
 
         .mobile-social-container {
@@ -376,9 +429,16 @@
         /* ==========================================
            HERO & SERVİS KARTLARI
            ========================================== */
+        main {
+            width: 100%;
+            overflow-x: hidden;
+        }
+
         .hero-section {
             padding: 9.5rem 0 5rem 0;
             position: relative;
+            width: 100%;
+            overflow: hidden;
         }
 
         .hero-grid {
@@ -446,6 +506,8 @@
 
         .hero-img {
             width: 100%;
+            max-width: 100%;
+            height: auto;
             border-radius: 24px;
             border: 1px solid var(--border-glow);
             box-shadow: 0 0 30px rgba(6, 182, 212, 0.2);
@@ -457,7 +519,7 @@
         /* ==========================================
            VİZYONUMUZ & MİSYONUMUZ BÖLÜMÜ
            ========================================== */
-        .vision-mission-section { padding: 4rem 0; }
+        .vision-mission-section { padding: 4rem 0; overflow: hidden; }
         .vision-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
 
         .vision-card {
@@ -487,8 +549,7 @@
         .vision-card h3 { font-size: 1.5rem; margin-bottom: 1rem; font-weight: 700; }
         .vision-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
 
-      
-        .services-section { padding: 3rem 0; }
+        .services-section { padding: 3rem 0; overflow: hidden; }
         .cards-3d-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
 
         .card-3d {
@@ -511,7 +572,7 @@
         .card-3d p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin-bottom: 1.2rem; }
         .card-footer-info { font-size: 0.8rem; color: var(--primary-cyan); font-weight: 600; }
 
-        .contact-section { padding: 5rem 0; }
+        .contact-section { padding: 5rem 0; overflow: hidden; }
         .contact-ultra-card {
             background: var(--gradient-card);
             border: 1px solid var(--border-glow);
@@ -548,29 +609,28 @@
 
         footer { padding: 2rem 0; border-top: 1px solid rgba(255, 255, 255, 0.05); color: var(--text-muted); font-size: 0.9rem; }
 
-        
         .live-chat-trigger-btn {
             position: fixed !important; bottom: 25px !important; right: 25px !important;
-            width: 70px !important; height: 70px !important; border-radius: 50% !important;
+            width: 65px !important; height: 65px !important; border-radius: 50% !important;
             background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #6366f1 100%) !important;
             display: flex !important; align-items: center !important; justify-content: center !important;
-            color: #ffffff !important; font-size: 1.8rem !important; cursor: pointer !important;
-            box-shadow: 0 0 30px rgba(6, 182, 212, 0.8), 0 0 50px rgba(99, 102, 241, 0.6) !important;
+            color: #ffffff !important; font-size: 1.6rem !important; cursor: pointer !important;
+            box-shadow: 0 0 30px rgba(6, 182, 212, 0.8) !important;
             z-index: 999999 !important; border: 2px solid rgba(255, 255, 255, 0.8) !important;
-            transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+            transition: transform 0.3s ease !important;
         }
-        .live-chat-trigger-btn:hover { transform: scale(1.1) rotate(5deg) !important; }
+        .live-chat-trigger-btn:hover { transform: scale(1.08) !important; }
         .live-chat-trigger-btn .status-pulse {
-            position: absolute; top: 2px; right: 2px; width: 16px; height: 16px;
-            background: #22c55e; border: 3px solid #070d19; border-radius: 50%; box-shadow: 0 0 8px #22c55e;
+            position: absolute; top: 2px; right: 2px; width: 14px; height: 14px;
+            background: #22c55e; border: 2.5px solid #070d19; border-radius: 50%; box-shadow: 0 0 8px #22c55e;
         }
 
         .chat-window {
-            position: fixed !important; bottom: 105px !important; right: 25px !important;
-            width: 380px !important; max-width: calc(100vw - 2rem) !important; height: 520px !important;
+            position: fixed !important; bottom: 100px !important; right: 25px !important;
+            width: 360px !important; max-width: calc(100vw - 2rem) !important; height: 500px !important;
             background: rgba(15, 23, 42, 0.95) !important; backdrop-filter: blur(25px) !important;
             border: 1.5px solid var(--border-glow) !important; border-radius: 24px !important;
-            box-shadow: 0 0 50px rgba(6, 182, 212, 0.4), 0 20px 50px rgba(0, 0, 0, 0.9) !important;
+            box-shadow: 0 0 40px rgba(6, 182, 212, 0.4) !important;
             z-index: 999999 !important; display: flex !important; flex-direction: column !important;
             overflow: hidden !important; opacity: 0 !important; visibility: hidden !important;
             transform: translateY(20px) scale(0.95) !important;
@@ -585,13 +645,13 @@
         }
         .chat-header-info { display: flex; align-items: center; gap: 0.8rem; }
         .chat-avatar {
-            width: 42px; height: 42px; border-radius: 50%; background: var(--gradient-main);
-            display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.2rem;
+            width: 40px; height: 40px; border-radius: 50%; background: var(--gradient-main);
+            display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.1rem;
             box-shadow: 0 0 15px var(--primary-cyan);
         }
-        .chat-title-box h4 { font-size: 1rem; font-weight: 700; color: #fff; }
-        .chat-title-box span { font-size: 0.75rem; color: #22c55e; display: flex; align-items: center; gap: 0.3rem; font-weight: 600; }
-        .chat-close-btn { color: var(--text-muted); cursor: pointer; font-size: 1.3rem; }
+        .chat-title-box h4 { font-size: 0.95rem; font-weight: 700; color: #fff; }
+        .chat-title-box span { font-size: 0.72rem; color: #22c55e; display: flex; align-items: center; gap: 0.3rem; font-weight: 600; }
+        .chat-close-btn { color: var(--text-muted); cursor: pointer; font-size: 1.2rem; }
 
         .chat-body { flex: 1; padding: 1.2rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; }
         .chat-msg { max-width: 85%; padding: 0.85rem 1.1rem; border-radius: 16px; font-size: 0.88rem; line-height: 1.5; }
@@ -611,12 +671,11 @@
             border-radius: 25px; padding: 0.75rem 1.2rem; color: #fff; font-size: 0.88rem; outline: none;
         }
         .chat-send-btn {
-            width: 42px; height: 42px; border-radius: 50%; background: var(--gradient-main); border: none;
+            width: 40px; height: 40px; border-radius: 50%; background: var(--gradient-main); border: none;
             color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center;
         }
 
-     
-          
+        /* MOBİL VE TABLET UYUMLULUK KONTROLLERİ */
         @media (max-width: 992px) {
             .hero-grid, .hero-stats-grid, .vision-grid, .cards-3d-grid, .contact-nodes-grid { grid-template-columns: 1fr; text-align: center; }
             .mobile-toggle { display: block; }
@@ -624,7 +683,7 @@
             .nav-social-icons { display: none; }
             
             .nav-links-wrapper {
-                position: fixed; top: 0; right: -100%; width: 82%; max-width: 330px; height: 100vh;
+                position: fixed; top: 0; right: -100%; width: 82%; max-width: 320px; height: 100vh;
                 background: rgba(7, 13, 25, 0.98); backdrop-filter: blur(25px); border-left: 1px solid var(--border-glow);
                 flex-direction: column; justify-content: center; padding: 2rem 1.5rem; gap: 0.8rem;
                 transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -632,7 +691,6 @@
             .nav-links-wrapper.active { right: 0; }
             .nav-links-wrapper .nav-item { width: 100%; height: 46px; display: flex; align-items: center; justify-content: flex-start; padding: 0 1rem !important; }
             
-            /* Mobilde Sosyal Medya Entegrasyonu */
             .mobile-social-container {
                 display: flex;
                 flex-direction: column;
@@ -641,7 +699,7 @@
                 width: 100%;
                 margin-top: 1rem;
                 padding-top: 1rem;
-                border-top: 1px solid rgba(6, 182, 212, 0.2);
+                border-top: 1.5px solid rgba(6, 182, 212, 0.6);
             }
             .mobile-social-icons {
                 display: flex;
@@ -652,14 +710,28 @@
 
             .chat-window { right: 1rem !important; left: 1rem !important; width: auto !important; bottom: 95px !important; height: 460px !important; }
         }
+
+        /* YAN TARAFA TAŞMALARI VE OYNAMALARI ENGELLEYEN MOBİL KORUMA */
+        @media (max-width: 768px) {
+            .anim-hidden.from-left,
+            .anim-hidden.from-right {
+                transform: translateY(40px) !important;
+            }
+            .hero-main-title {
+                font-size: 2.2rem;
+            }
+            .cursor-glow {
+                display: none;
+            }
+        }
     </style>
 </head>
 
 <body data-page="home">
 
-   
     <div class="cursor-glow" id="cursor-glow"></div>
 
+    <!-- SIFIR TAŞMA TAM EKRAN İNTRO OVERLAY -->
     <div id="intro-overlay" class="intro-overlay">
         <div class="cinematic-intro-content">
             <span class="intro-tagline">OSMAN DENİZ MART TASARIMI</span>
@@ -714,7 +786,7 @@
                     <div class="status-badge"><i class="fa-solid fa-star"></i> Engelleri Birlikte Aşıyoruz</div>
                     <h1 class="hero-main-title">Sevgiyle Dokunuyor, Uzmanlıkla Büyütüyoruz.</h1>
                     <h3 class="hero-director">Can Mart — <span class="highlight-text">Kurucu & Genel Müdür</span></h3>
-                    <p class="hero-description">Modern özel eğitim yöntemleri, duyu bütünleme alanları ve uzman kadromuzla çocuklarımızın geleceğere güvenle ilerlemesini sağlıyoruz.</p>
+                    <p class="hero-description">Modern özel eğitim yöntemleri, duyu bütünleme alanları ve uzman kadromuzla çocuklarımızın geleceğe güvenle ilerlemesini sağlıyoruz.</p>
 
                     <div class="hero-stats-grid">
                         <div class="stat-card">
@@ -865,21 +937,19 @@
         document.addEventListener('DOMContentLoaded', () => {
             // 1. FARE TAKİP EFEKTİ
             const cursorGlow = document.getElementById('cursor-glow');
-            if (cursorGlow) {
+            if (cursorGlow && window.innerWidth > 768) {
                 window.addEventListener('mousemove', (e) => {
                     cursorGlow.style.left = e.clientX + 'px';
                     cursorGlow.style.top = e.clientY + 'px';
                 });
             }
 
-            // 2. KİNEMATİK İNTRO (SADECE İLK GİRİŞTE 1 KEZ GÖRÜNÜR, YENİLEMEDE ÇIKMAZ)
+            // 2. KİNEMATİK İNTRO KONTROLÜ
             const introOverlay = document.getElementById('intro-overlay');
             if (introOverlay) {
-                // Tarayıcı hafızasında ilk giriş kontrolü (sessionStorage)
                 const hasVisited = sessionStorage.getItem('canmart_visited');
 
                 if (!hasVisited) {
-                    // İlk kez giriliyor, intro gösterilsin ve işaretlensin
                     sessionStorage.setItem('canmart_visited', 'true');
                     
                     setTimeout(() => {
@@ -891,19 +961,18 @@
                         }, 200);
                     }, 2500);
                 } else {
-                    
                     introOverlay.style.display = 'none';
-                    document.querySelectorAll('.anim-hidden').forEach(el => {
+                    document.querySelectorAll('.hero-section .anim-hidden').forEach(el => {
                         el.classList.add('anim-show');
                     });
                 }
             }
 
-            
+            // 3. OBSERVER İLE SCROLL ANİMASYONU
             const observerOptions = {
                 root: null,
-                rootMargin: '0px 0px -80px 0px',
-                threshold: 0.1
+                rootMargin: '0px 0px -50px 0px',
+                threshold: 0.05
             };
 
             const animObserver = new IntersectionObserver((entries, observer) => {
@@ -952,7 +1021,7 @@
                 adres: "📍 **Adresimiz:** Şehit Asker Kemal Keskin Mahallesi, Vadi Sokak No: 17, Düziçi / Osmaniye.",
                 iletisim: "📞 **Telefon:** +90 553 488 63 01\n💬 **WhatsApp:** Aynı numaramızdan 7/24 bizlere mesaj gönderebilirsiniz.",
                 saat: "⏰ **Çalışma Saatlerimiz:** Kurumumuz Haftaiçi ve Cumartesi günleri 08:30 - 17:30 saatleri arasında açıktır.",
-                bolumler: "🎓 **Mevcut Bölüm ve Terapilerimiz:**\n• Duyu Bütünleme Terapisi Odaları\n• Dil dan Konuşma Terapisi\n• Zihinsel & Bedensel Gelişim Terapisi\n• Bireysel Özel Eğitim Derslikleri\n• Oyun Terapisi Alanı",
+                bolumler: "🎓 **Mevcut Bölüm ve Terapilerimiz:**\n• Duyu Bütünleme Terapisi Odaları\n• Dil ve Konuşma Terapisi\n• Zihinsel & Bedensel Gelişim Terapisi\n• Bireysel Özel Eğitim Derslikleri\n• Oyun Terapisi Alanı",
                 servis: "🚌 **Servis İmkânı:** Evet, öğrencilerimiz için rehber personel eşliğinde kapıdan alıp eve teslim eden ücretsiz özel servisimiz mevcuttur!"
             };
 
